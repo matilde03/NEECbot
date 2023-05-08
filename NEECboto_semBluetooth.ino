@@ -1,8 +1,8 @@
 #include <Servo.h>        //add Servo Motor library            
 #include <NewPing.h>      //add Ultrasonic sensor library
 
-#define TRIG_PIN 3
-#define ECHO_PIN  4
+#define TRIG_PIN 3 
+#define ECHO_PIN 4 
 #define MAX_DISTANCE 300 // sets maximum useable sensor measuring distance to 300cm
 #define COLL_DIST 30 // sets distance at which robot stops and reverses to 30cm
 #define TURN_DIST COLL_DIST+20 // sets distance at which robot veers away from object
@@ -61,13 +61,13 @@ void loop() {
 void changePath() {
   moveStop();   // stop forward movement
     reader.write(36);  // check distance to the right
-    delay(500);
+    delay(300);
     rightDistance = readPing(); //set right distance
-    delay(500);
+    delay(300);
     reader.write(144);  // check distace to the left
-    delay(700);
-    leftDistance = readPing(); //set left distance
     delay(500);
+    leftDistance = readPing(); //set left distance
+    delay(300);
     reader.write(90); //return to center
     delay(100);
     compareDistance();
@@ -108,16 +108,16 @@ int readPing() { // read the ultrasonic sensor distance
   return cm;
 }
 //------------------------------------------------//movement---------------------------------------------------------------------------------
-void moveStop() { right_servo.write(90); left_servo.write(90);}  // stop the motors.
+void moveStop() { right_servo.write(90); left_servo.write(91);}  // stop the motors.
 //-------------------------------------------------------------------------------------------------------------------------------------
 void moveForward() {
-  right_servo.write(45);
-  left_servo.write(135);
+  right_servo.write(60);
+  left_servo.write(120);
 }
 //-------------------------------------------------------------------------------------------------------------------------------------
 void moveBackward() {
-    right_servo.write(135);
-    left_servo.write(45);
+    right_servo.write(120);
+    left_servo.write(60);
 }  
 //-------------------------------------------------------------------------------------------------------------------------------------
 void turnRight() {
