@@ -1,8 +1,8 @@
 #include <Servo.h>        //add Servo Motor library            
 #include <NewPing.h>      //add Ultrasonic sensor library
 
-#define TRIG_PIN 8 
-#define ECHO_PIN 9 
+#define TRIG_PIN 3
+#define ECHO_PIN  4
 #define MAX_DISTANCE 300 // sets maximum useable sensor measuring distance to 300cm
 #define COLL_DIST 30 // sets distance at which robot stops and reverses to 30cm
 #define TURN_DIST COLL_DIST+20 // sets distance at which robot veers away from object
