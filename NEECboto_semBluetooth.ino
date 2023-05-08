@@ -23,7 +23,7 @@ int up;
 void setup() {
   left_servo.attach(11); 
   right_servo.attach(10);
-  reader.attach(9);
+  reader.attach(6);
   reader.write(90);
   Serial.begin(9600);
   delay(100); // delay for one seconds
