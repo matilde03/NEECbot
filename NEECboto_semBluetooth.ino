@@ -2,7 +2,7 @@
 #include <NewPing.h>      //add Ultrasonic sensor library
 
 #define TRIG_PIN 8 
-#define ECHO_PIN 9 
+#define ECHO_PIN 3 
 #define MAX_DISTANCE 300 // sets maximum useable sensor measuring distance to 300cm
 #define COLL_DIST 30 // sets distance at which robot stops and reverses to 30cm
 #define TURN_DIST COLL_DIST+20 // sets distance at which robot veers away from object
@@ -23,7 +23,7 @@ int up;
 void setup() {
   left_servo.attach(11); 
   right_servo.attach(10);
-  reader.attach(9);
+  reader.attach(6);
   reader.write(90);
   Serial.begin(9600);
   delay(100); // delay for one seconds
@@ -61,13 +61,13 @@ void loop() {
 void changePath() {
   moveStop();   // stop forward movement
     reader.write(36);  // check distance to the right
-    delay(500);
+    delay(300);
     rightDistance = readPing(); //set right distance
-    delay(500);
+    delay(300);
     reader.write(144);  // check distace to the left
-    delay(700);
-    leftDistance = readPing(); //set left distance
     delay(500);
+    leftDistance = readPing(); //set left distance
+    delay(300);
     reader.write(90); //return to center
     delay(100);
     compareDistance();
@@ -84,9 +84,8 @@ void compareDistance()   // find the longest distance
   {
     turnRight();
   }
-   else  if (leftDistance<30 and rightDistance<30 and leftDistance>15 and rightDistance>15) //if they are equally obstructed
+   else  if (leftDistance>15 and rightDistance>15) //if they are equally obstructed
   {
-    
     turnAround();
   } else {
 
@@ -121,8 +120,8 @@ void moveBackward() {
 }  
 //-------------------------------------------------------------------------------------------------------------------------------------
 void turnRight() {
-  left_servo.write(140);
-  right_servo.write(140);
+  left_servo.write(135);
+  right_servo.write(135);
   delay(150); // run motors this way for 1500        
 
    right_servo.write(0); //Set motors back to forward
@@ -130,16 +129,16 @@ void turnRight() {
 }  
 //-------------------------------------------------------------------------------------------------------------------------------------
 void turnLeft() {
-  left_servo.write(40);
-  right_servo.write(40);
+  left_servo.write(45);
+  right_servo.write(45);
   delay(150); // run motors this way for 1500     
   right_servo.write(0); //Set motors back to forward
   left_servo.write(180); 
 }  
 //-------------------------------------------------------------------------------------------------------------------------------------
 void turnAround() {
-  left_servo.write(140);
-  right_servo.write(140);
+  left_servo.write(135);
+  right_servo.write(135);
   delay(600); // run motors this way for 1700        
 
   right_servo.write(0); //Set motors back to forward
